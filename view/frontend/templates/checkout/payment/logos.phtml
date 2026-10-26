@@ -1,0 +1,77 @@
+<?php
+/** @var \Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Logos $block */
+/** @var \Hyva\Theme\ViewModel\HyvaCsp $hyvaCsp */
+$hyvaCsp = $block->getData('hyvaCsp');
+?>
+<script type="application/json" id="epay-hyva-payment-logos">
+    <?= /* @noEscape */ $block->getLogosJson() ?>
+</script>
+<script>
+    (() => {
+        'use strict';
+
+        const source = document.getElementById('epay-hyva-payment-logos');
+        if (!source) {
+            return;
+        }
+
+        let logosByMethod;
+        try {
+            logosByMethod = JSON.parse(source.textContent);
+        } catch (error) {
+            return;
+        }
+
+        const decorateMethod = (code, label) => {
+            if (!logosByMethod[code] || label.querySelector('.epay-payment-method-logos')) {
+                return;
+            }
+
+            const container = document.createElement('span');
+            container.className = 'epay-payment-method-logos';
+            container.style.display = 'inline-flex';
+            container.style.alignItems = 'center';
+            container.style.gap = '0.5rem';
+            container.style.marginInlineStart = '0.5rem';
+            container.style.verticalAlign = 'middle';
+
+            logosByMethod[code].forEach((logo) => {
+                const image = document.createElement('img');
+                image.src = logo.url;
+                image.alt = logo.alt;
+                image.loading = 'lazy';
+                image.style.maxHeight = '24px';
+                image.style.maxWidth = '48px';
+                image.style.width = 'auto';
+                image.style.objectFit = 'contain';
+                container.appendChild(image);
+            });
+
+            label.appendChild(container);
+        };
+
+        const decorate = () => {
+            const list = document.getElementById('payment-method-list');
+            if (!list) {
+                return;
+            }
+
+            Object.keys(logosByMethod).forEach((code) => {
+                const input = list.querySelector('input[type="radio"][value="' + code + '"]');
+                if (!input) {
+                    return;
+                }
+
+                const label = list.querySelector('label[for="' + code + '"]')
+                    || input.closest('li')?.querySelector('label');
+                if (label) {
+                    decorateMethod(code, label);
+                }
+            });
+        };
+
+        decorate();
+        new MutationObserver(decorate).observe(document.body, {childList: true, subtree: true});
+    })();
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>
