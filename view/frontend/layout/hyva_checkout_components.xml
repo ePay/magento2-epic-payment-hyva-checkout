@@ -7,6 +7,34 @@
                    as="epayepicpayment"
                    class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
                    template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_anyday"
+                   as="epayepicpayment_anyday"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_applepay"
+                   as="epayepicpayment_applepay"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_googlepay"
+                   as="epayepicpayment_googlepay"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_klarna"
+                   as="epayepicpayment_klarna"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_mobilepay"
+                   as="epayepicpayment_mobilepay"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_swish"
+                   as="epayepicpayment_swish"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
+            <block name="checkout.payment.method.epayepicpayment_viabill"
+                   as="epayepicpayment_viabill"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Description"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::payment/method/epayepicpayment.phtml"/>
         </referenceBlock>
     </body>
 </page>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="magewire.plugin.scripts">
+            <block name="epay.hyva.checkout.payment.logos"
+                   class="Epay\Magento2EpicPaymentHyvaCheckout\Block\Checkout\Payment\Logos"
+                   template="Epay_Magento2EpicPaymentHyvaCheckout::checkout/payment/logos.phtml">
+                <arguments>
+                    <argument name="hyvaCsp" xsi:type="object">Hyva\Theme\ViewModel\HyvaCsp</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
