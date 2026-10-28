@@ -9,7 +9,16 @@ use Magento\Store\Model\ScopeInterface;
 
 class Description extends Template
 {
-    private const CONFIG_PATH = 'payment/epayepicpayment/description';
+    private const CODES = [
+        'epayepicpayment',
+        'epayepicpayment_anyday',
+        'epayepicpayment_applepay',
+        'epayepicpayment_googlepay',
+        'epayepicpayment_klarna',
+        'epayepicpayment_mobilepay',
+        'epayepicpayment_swish',
+        'epayepicpayment_viabill',
+    ];
 
     private ScopeConfigInterface $scopeConfig;
 
@@ -24,9 +33,26 @@ class Description extends Template
 
     public function getDescription(): string
     {
+        $code = $this->getMethodCode();
+        if ($code === null) {
+            return '';
+        }
+
         return (string)$this->scopeConfig->getValue(
-            self::CONFIG_PATH,
+            'payment/' . $code . '/description',
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    private function getMethodCode(): ?string
+    {
+        $method = $this->getData('method');
+        if (!is_object($method) || !method_exists($method, 'getCode')) {
+            return null;
+        }
+
+        $code = (string)$method->getCode();
+
+        return in_array($code, self::CODES, true) ? $code : null;
     }
 }
